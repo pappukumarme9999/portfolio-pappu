@@ -1,0 +1,60 @@
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import path from "path";
+
+export default defineConfig({
+  plugins: [react()],
+
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+    },
+  },
+
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "@/styles/variables.scss";`,
+      },
+    },
+  },
+
+  server: {
+    port: 3000,
+    strictPort: true,
+    fs: {
+      allow: [".."],
+    },
+    proxy: {
+      "/api": {
+        target: "http://localhost:8080",
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+        // rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
+
+  preview: {
+    port: 4173,
+    strictPort: true,
+  },
+
+  build: {
+    outDir: "../portfolio-backend/src/main/resources/static",
+    emptyOutDir: true,
+  },
+
+  optimizeDeps: {
+    include: ["@mui/material", "@emotion/react", "@emotion/styled"],
+  },
+
+  define: {
+    "process.env": {},
+  },
+
+  base: "/",
+  assetsInclude: ["**/*.svg"],
+  publicDir: "public",
+});
