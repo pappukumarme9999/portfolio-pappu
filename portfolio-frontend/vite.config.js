@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 
 export default defineConfig({
+  base: '/portfolio-pappu/',
+
   plugins: [react()],
 
   resolve: {
@@ -42,7 +44,7 @@ export default defineConfig({
   },
 
   build: {
-    outDir: '../portfolio-backend/src/main/resources/static',
+    outDir: 'dist',
     emptyOutDir: true,
   },
 
@@ -54,7 +56,6 @@ export default defineConfig({
     'process.env': {},
   },
 
-  base: '/',
   assetsInclude: ['**/*.svg'],
   publicDir: 'public',
 });
