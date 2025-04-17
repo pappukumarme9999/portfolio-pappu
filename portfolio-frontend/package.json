@@ -6,8 +6,7 @@
   "homepage": "https://pappukumarme9999.github.io/portfolio-pappu",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "npm run copy404 && gh-pages -d dist",
-    "copy404": "cp dist/index.html dist/404.html",
+    "deploy": "npm run && gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
