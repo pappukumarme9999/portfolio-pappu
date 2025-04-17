@@ -1,20 +1,20 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import path from "path";
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
 
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
+      '@': path.resolve(__dirname, 'src'),
     },
   },
 
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "@/styles/variables.scss";`,
+        additionalData: `@use "@/styles/variables.scss" as *;`,
       },
     },
   },
@@ -23,11 +23,11 @@ export default defineConfig({
     port: 3000,
     strictPort: true,
     fs: {
-      allow: [".."],
+      allow: ['..'],
     },
     proxy: {
-      "/api": {
-        target: "http://localhost:8080",
+      '/api': {
+        target: 'http://localhost:8080',
         changeOrigin: true,
         secure: false,
         ws: true,
@@ -42,19 +42,19 @@ export default defineConfig({
   },
 
   build: {
-    outDir: "../portfolio-backend/src/main/resources/static",
+    outDir: '../portfolio-backend/src/main/resources/static',
     emptyOutDir: true,
   },
 
   optimizeDeps: {
-    include: ["@mui/material", "@emotion/react", "@emotion/styled"],
+    include: ['@mui/material', '@emotion/react', '@emotion/styled'],
   },
 
   define: {
-    "process.env": {},
+    'process.env': {},
   },
 
-  base: "/",
-  assetsInclude: ["**/*.svg"],
-  publicDir: "public",
+  base: '/',
+  assetsInclude: ['**/*.svg'],
+  publicDir: 'public',
 });
