@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://pappukumarme9999.github.io/portfolio-pappu",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
