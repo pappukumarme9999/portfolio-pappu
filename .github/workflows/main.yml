@@ -10,29 +10,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: ⬇️ Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: 🟢 Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
           cache: 'npm'
 
-      - name: 📦 Install dependencies
-        run: npm ci
+      - name: Install dependencies
+        run: |
+          cd portfolio-frontend
+          npm install
         working-directory: ./portfolio-frontend
 
-      - name: 🛠️ Build frontend
+      - name: Build frontend
         run: npm run build
         working-directory: ./portfolio-frontend
 
-      - name: 📄 Copy index.html -> 404.html
+      - name: Copy index.html -> 404.html
         run: cp dist/index.html dist/404.html
         working-directory: ./portfolio-frontend
 
-      - name: 🚀 Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./portfolio-frontend/dist
